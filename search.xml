@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>数据结构作业-线性表的顺序表示和链式表示</title>
+      <link href="/2022/03/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%9C%E4%B8%9A-%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%A4%BA%E5%92%8C%E9%93%BE%E5%BC%8F%E8%A1%A8%E7%A4%BA/"/>
+      <url>/2022/03/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BD%9C%E4%B8%9A-%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%A4%BA%E5%92%8C%E9%93%BE%E5%BC%8F%E8%A1%A8%E7%A4%BA/</url>
+      
+        <content type="html"><![CDATA[<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul><li>为了实现顺序表和链表的建立、取元素、修改元素、插入、删除等顺序表的基本操作。</li></ul><pre class=" language-shell"><code class="language-shell">#include <stdio.h>#include <stdlib.h>#define MAX_LENGTH 100 //规定线性表的最大长度#define ERROR -1#define OVERFLOW -2#define OK 1typedef int Status;typedef int ElemType; //为了方便，将元素的类型设置为int型typedef struct&#123;    ElemType elem[MAX_LENGTH];    int length;&#125; List;typedef struct List__Elem&#123;    ElemType _elem;    struct List_Elem *next;&#125; elem_;//顺序表和链式表的创建Status CreateList(List **L, elem_ **L1)&#123;    int n, i;    elem_ *p;    *L = (List *)malloc(sizeof(List));    p = (*L1) = (elem_ *)malloc(sizeof(elem_)); //第一个节点为空，这里顺便可以用第一个节点的elem记录元素个数    if (!*L || !p)        exit(0);    (*L)->length = 0;    printf("请输入数据的个数\n");    scanf("%d", &n);    (*L)->length = n;    p->_elem = n;    printf("请输入数据，数据间用空格隔开，输入完成后，请输入回车\n");    for (i = 0; i < n; i++)    &#123;        scanf("%d", &((*L)->elem[i]));        p->next = (elem_ *)malloc(sizeof(elem_));        p = p->next; // vs code不允许p->next->next        p->_elem = (*L)->elem[i];    &#125;    p->next = NULL;    return OK;&#125;//顺序表和链式表的插入Status InsertList(List *L, elem_ *L1, int i, ElemType e)&#123;    if (i > MAX_LENGTH)    &#123;        printf("插入的位置超出最大长度\n");        return ERROR;    &#125;    if (L->length == MAX_LENGTH)    &#123;        printf("该链表已满，无法插入\n");        return OVERFLOW;    &#125;    int k;    elem_ *p, *p1, *p2;    for (k = L->length; k >= i; k--)    &#123;        L->elem[k] = L->elem[k - 1];    &#125;    L->elem[i - 1] = e;    p = L1;    for (k = 1; k < i; k++)    &#123;        p = p->next;    &#125;    p1 = p->next;    p->next = (elem_ *)malloc(sizeof(elem_));    p2 = p->next;    p2->_elem = e;    p2->next = p1;    L->length++;    L1->_elem++;    return OK;&#125;//顺序表和链式表的删除Status DeleteElem(List *L, elem_ *L1, int i)&#123;    if (i > MAX_LENGTH)    &#123;        printf("删除的位置超出最大长度\n");        return ERROR;    &#125;    int k;    elem_ *p = L1, *p1;    for (k = i; k < L->length; k++)    &#123;        L->elem[k - 1] = L->elem[k];    &#125;    for (k = 1; k < i; k++)    &#123;        p = p->next;    &#125;    p1 = p->next;    if (p1)    &#123;        p->next = p1->next;        free(p1);    &#125;    L1->_elem--;    L->length--;    return OK;&#125;//长度int LengthList(List *L)&#123;    printf("该线性表的长度为%d\n", L->length);    return L->length;&#125;//顺序表的显示输出void PrintList(List *L)&#123;    int i, k;    for (i = 0, k = 1; i < L->length; i++)    &#123;        printf("%d\t", L->elem[i]);        if (++k % 10 == 0)            printf("\n");    &#125;    printf("\n");&#125;//取链表的第i个元素Status GetElem(elem_ *L, int i)&#123;    int k;    elem_ *p = L;    for (k = 0; k < i; k++)    &#123;        p = p->next;    &#125;    printf("链表的第%d个元素为%d\n", i, p->_elem);&#125;//链表的输出void PrintList_(elem_ *L)&#123;    int i = 1;    elem_ *p = L;    while (p->next)    &#123;        p = p->next;        printf("链表中第%d个元素的值为%d 地址为%p\n", i, p->_elem, p);        i++;    &#125;&#125;// //对key的判断void KeyJudge(int key, List *L, elem_ *L1)&#123;    void Menu(void);    int i;    ElemType e;    switch (key)    &#123;    case 1:        // int i;        // ElemType e;        printf("请输入需要插入的元素\n");        scanf("%d", &e);        printf("请输入需要插入元素的位置\n");        scanf("%d", &i);        system("CLS");        InsertList(L, L1, i, e);        Menu();        break;    case 2:        // int i;        printf("请输入你需要删除元素的位序\n");        scanf("%d", &i);        system("CLS");        DeleteElem(L, L1, i);        Menu();        break;    case 3:        system("CLS");        LengthList(L);        Menu();        break;    case 4:        system("CLS");        PrintList(L);        Menu();        break;    case 5:        printf("请输入需要插入的元素\n");        scanf("%d", &e);        printf("请输入需要插入元素的位置\n");        scanf("%d", &i);        system("CLS");        InsertList(L, L1, i, e);        Menu();        break;    case 6:        printf("请输入你需要删除元素的位序\n");        scanf("%d", &i);        system("CLS");        DeleteElem(L, L1, i);        Menu();        break;    case 7:        printf("请输入你所取元素的位置\n");        scanf("%d", &i);        system("CLS");        GetElem(L1, i);        Menu();        break;    case 8:        system("CLS");        PrintList_(L1);        Menu();        break;    case 9:        exit(0);        break;    default:        system("CLS");        printf("输入错误，请重新输入\n");        Menu();    &#125;&#125;int main()&#123;    void Menu(void); //显示菜单    int key;    List *L1, *L2;    printf("输入1进入程序\n");    printf("输入2退出程序\n");    scanf("%d", &key);    if (key == 1)    &#123;        CreateList(&L1, &L2);        Menu();        for (;;) //一个死循环，直到key==9时exit(0)        &#123;            scanf("%d", &key);            KeyJudge(key, L1, L2);        &#125;    &#125;    else if (key == 2)        exit(0);    else        printf("输入错误，请重新输入");    return 0;&#125;//显示菜单void Menu(void)&#123;    printf("1:顺序表的插入\n2:顺序表的删除\n3:顺序表的长度\n4:顺序表的显示输出\n5:链表的插入\n6:链表的删除\n7:取链表的第i个元素\n8:链表的输出\n9:退出程序\n请选择1—9:\n");&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> SchoolAssignment </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DataStructure </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2022/03/16/hello-world/"/>
       <url>/2022/03/16/hello-world/</url>
