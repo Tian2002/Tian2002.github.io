@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>数据结构-翻转单链表（循环/递归）</title>
+      <link href="/2022/03/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BF%BB%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8%EF%BC%88%E5%BE%AA%E7%8E%AF%E6%B3%95%E5%92%8C%E9%80%92%E5%BD%92%E6%B3%95%EF%BC%89/"/>
+      <url>/2022/03/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BF%BB%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8%EF%BC%88%E5%BE%AA%E7%8E%AF%E6%B3%95%E5%92%8C%E9%80%92%E5%BD%92%E6%B3%95%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h3 id="翻转单链表-循环法-递归法"><a href="#翻转单链表-循环法-递归法" class="headerlink" title="翻转单链表-循环法/递归法"></a>翻转单链表-循环法/递归法</h3><pre class=" language-shell"><code class="language-shell">#include <stdio.h>#include <stdlib.h>typedef int ElemType;typedef struct date&#123;    ElemType elem;    struct date *next;&#125; List;List *InitList(List *L) //初始化链表&#123;    ElemType t;    List *p;    L = p = (List *)malloc(sizeof(List));    p->next = NULL;    printf("请输入链表元素,直到输入0截至\n");    scanf("%d", &t);    while (t)    &#123;        p->next = (List *)malloc(sizeof(List));        p = p->next;        p->elem = t;        p->next = NULL;        scanf("%d", &t);    &#125;    return L;&#125;void PrintList(List *L) //输出链表&#123;    List *p = L;    int i = 1;    while (p->next)    &#123;        p = p->next;        printf("%d\t", p->elem);        if (++i % 10 == 0)            printf("\n");    &#125;    printf("\n");&#125;List *FlipList(List *L) //翻转链表 迭代法&#123;    List *newHead = L, *p, *p1, *p2;    p = newHead->next;    newHead->next = NULL;    while (p != NULL)    &#123;        p2 = newHead->next;        newHead->next = p;        p1 = p->next;        p->next = p2;        p = p1;    &#125;    return newHead;&#125;List *FlipList_(List *L) //翻转链表 递归法 递归时需要去头&#123;    if (!L || !L->next) //短路原则        return L;    List *newHead = FlipList_(L->next);    L->next->next = L;    L->next = NULL;    return newHead;&#125;List *FlipList__(List *L) //去头进入递归，然后再加入空的头节点&#123;    List *head = L->next;    head = FlipList_(head);    L->next = head;    return L;&#125;int main()&#123;    int i;    List *L;    L = InitList(L);    PrintList(L);    printf("输入1翻转链表,其他输入退出程序\n");    scanf("%d", &i);    if (i == 1)    &#123;        system("CLS");        // L = FlipList(L);        L = FlipList__(L);        PrintList(L);    &#125;    else        exit(0);    return 0;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> SchoolAssignment </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DataStructure </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java上机-初识Java</title>
       <link href="/2022/03/18/Java%E4%B8%8A%E6%9C%BA-%E5%88%9D%E8%AF%86Java/"/>
       <url>/2022/03/18/Java%E4%B8%8A%E6%9C%BA-%E5%88%9D%E8%AF%86Java/</url>
