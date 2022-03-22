@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>PHP-数组</title>
+      <link href="/2022/03/22/PHP-%E6%95%B0%E7%BB%84/"/>
+      <url>/2022/03/22/PHP-%E6%95%B0%E7%BB%84/</url>
+      
+        <content type="html"><![CDATA[<h3 id="PHP数组基础练习记录"><a href="#PHP数组基础练习记录" class="headerlink" title="PHP数组基础练习记录"></a>PHP数组基础练习记录</h3><pre class=" language-shell"><code class="language-shell">&lt;?php//一维数组$arr=array("first"=&gt;"firstelement","第二个"=&gt;"secondelement");//key=&gt;value$arr1=array("UTP-8","GBK");//默认为数字的下标echo('数组的个数是'.sizeof($arr).'&lt;br /&gt;');print_r($arr);//打印数组的所有分量echo'&lt;br /&gt;';echo($arr["first"]);$arr1[3]="test";//添加元素$arr1[]="kukuku";echo'&lt;br /&gt;';print_r($arr1);echo'&lt;br /&gt;';var_dump($arr);echo'&lt;br /&gt;';//二维数组$arr2=array(array("A","B"),array("C","D"));print_r($arr2);echo'&lt;br /&gt;';var_dump($arr2);echo'&lt;br /&gt;';$arr3=array(1,2,3,4,5);//array_unshift();//添加在数组头部array_push($arr3,5);//添加在数组末尾print_r($arr3);echo'&lt;br /&gt;';//array_shift();//删除数组的首个元素array_pop($arr3);//删除数组末尾元素print_r($arr3);echo'&lt;br /&gt;';if(in_array("firstelement",$arr))//检测数组中是否有某个值，返回的是Boolean值&#123;    echo('firstelement在数组arr中');    echo'&lt;br /&gt;';&#125;if(in_array("secondelement",$arr,True))//添加了第三个参数就要求两个值 ===&#123;    echo('secondelement在数组arr中');    echo'&lt;br /&gt;';&#125;$key=array_search("firstelement",$arr);echo($key.'&lt;br /&gt;');//查找数组中是否有该value，如果有就返回该key的位序,没有就返回false，可以添加第三个参数，同in_array()if(array_key_exists("first",$arr))//检测数组中是否有某个key，返回值为Boolean值&#123;    echo('数组arr中有key值first&lt;br /&gt;');&#125;print_r(array_keys($arr));//数组的每一个key值echo'&lt;br&gt;';print_r(array_values($arr));//数组的每一个value值echo'&lt;br /&gt;';echo'&lt;hr /&gt;';//数组的指针$a=count($arr);//获取数组元素的数量echo('数组arr的元素数量为'.$a.'&lt;br /&gt;');$a=current($arr);//获取当前指针下的数组元素echo($a.' ');$a=next($arr);//将数组指针移动到下一个位置echo($a.'&lt;br /&gt;');$a=prev($arr);//将数组指针移到数组第一个元素echo(' '.reset($arr).' ');//reset()同prev()echo($a.' ');$a=end($arr);//将数组指针移到最后一个元素echo($a.'&lt;br /&gt;');//利用current()和next()遍历数组$a=prev($arr);echo($a);for($i=0;$i&lt;sizeof($arr);$i++)&#123;    echo(' '.next($arr));&#125;echo'&lt;br /&gt;';//使用foreach(数组 as $value)遍历数组foreach ($arr as $value)&#123;    echo($value.' ');&#125;echo'&lt;hr /&gt;';$arr4=array(1,2,3,1,'1','2');$arr2=array_unique($arr4);//去掉数组中重复的元素print_r($arr2);//去重是判断是==echo'&lt;br /&gt;';print_r($arr4);//去重后原数组不变echo'&lt;br /&gt;';$arr4=array(3,2,4,1);asort($arr4);//升序排列数组,改变原数组，返回的是布尔值print_r($arr4);arsort($arr4);//降序排列数组,改变原数组echo'&lt;br /&gt;';print_r($arr4);echo'&lt;br /&gt;';$arr3=array_reverse($arr4);//反序排列数组，返回数组，原数组不变print_r($arr3);echo'&lt;br /&gt;';print_r($arr4);echo'&lt;br /&gt;';$arr=array_fill(1,2,'element');//函数可以指定的值填充所有的数组元素,array array_fill ( int $start_index, int $num, mixed $value)print_r($arr);echo'&lt;br /&gt;';$arr4=array_merge($arr1,$arr2);//函数可以将多个数组合并为一个数组。array array_merge ( array array1, array array2 [, array ...])print_r($arr4);echo'&lt;br /&gt;';$arr4=array(1,2,3,4,5,6,4,3123,3,2,3,3,4,1,);$arr1=array_count_values($arr4);//用于统计数组中所有值的个数,返回一个数组print_r($arr1);echo'&lt;br /&gt;';echo(array_sum($arr4).'&lt;hr /&gt;');//求出数组中所有元素的和</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> PracticeNotes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PHP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数据结构-翻转单链表（循环/递归）</title>
       <link href="/2022/03/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BF%BB%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8%EF%BC%88%E5%BE%AA%E7%8E%AF-%E9%80%92%E5%BD%92%EF%BC%89/"/>
       <url>/2022/03/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BF%BB%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8%EF%BC%88%E5%BE%AA%E7%8E%AF-%E9%80%92%E5%BD%92%EF%BC%89/</url>
