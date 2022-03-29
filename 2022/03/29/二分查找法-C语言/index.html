@@ -484,29 +484,29 @@
 <h3 id="二分查找法"><a href="#二分查找法" class="headerlink" title="二分查找法"></a>二分查找法</h3><ul>
 <li>初始left=0，right=arr.length-1</li>
 <li>mid=l+(r-l)/2而不是mid=(r+l)/2,是为了防止整形溢出</li>
-<li>函数的返回值 若在函数中找到了target，则返回索引值，否则返回-1<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><pre class=" language-shell"><code class="language-shell">int search(int *num,int left,int right,int target)
+<li>函数的返回值 若在函数中找到了target，则返回索引值，否则返回-1</li>
+</ul>
+<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><pre class=" language-shell"><code class="language-shell">int search(int *num,int left,int right,int target)
 &#123;
-  if(left&gt;right) return -1;
-  int mid=left+(right-left)/2;
-  if(num[mid]==target) return mid;
-  else if(num[mid]&lt;target) return search(num,mid+1,right,target);
-  return search(num,left,mid-1,target);
+    if(left&gt;right) return -1;
+    int mid=left+(right-left)/2;
+    if(num[mid]==target) return mid;
+    else if(num[mid]&lt;target) return search(num,mid+1,right,target);
+    return search(num,left,mid-1,target);
 &#125;
 </code></pre>
 <h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><pre class=" language-shell"><code class="language-shell">int search(int *num,int l,int r,int target)
 &#123;
-  while(l&lt;=r)
-  &#123;
-      int mid=l+(r-l)/2;
-      if(num[mid]==target) return mid;
-      if(num[mid]&lt;target) l=mid+1;
-      else r=mid-1;
-  &#125;
-  return -1;
+    while(l&lt;=r)
+    &#123;
+        int mid=l+(r-l)/2;
+        if(num[mid]==target) return mid;
+        if(num[mid]&lt;target) l=mid+1;
+        else r=mid-1;
+    &#125;
+    return -1;
 &#125;
 </code></pre>
-</li>
-</ul>
 <h3 id="二分查找法的变种"><a href="#二分查找法的变种" class="headerlink" title="二分查找法的变种"></a>二分查找法的变种</h3><h4 id="upper"><a href="#upper" class="headerlink" title="upper"></a>upper</h4><ul>
 <li>寻找大于target的最小值</li>
 <li>函数的返回值 若在函数中找到了目标值，则返回目标值的索引，否则返回arr.length。因为当target&lt;max{arr[i]}时一定可以在数组中找到相应的值，当target&gt;=max{arr[i]}时，数组中不存在满足条件的值，该值应该在arr[arr.length-1]的右侧，故返回arr.length，对于数组arr，arr.length为非法索引</li>
@@ -521,7 +521,9 @@
   return search(nums,mid+1,r,target);
 &#125;
 </code></pre>
-<h4 id="lower"><a href="#lower" class="headerlink" title="lower"></a>lower</h4></li>
+</li>
+</ul>
+<h4 id="lower"><a href="#lower" class="headerlink" title="lower"></a>lower</h4><ul>
 <li>寻找小于target的最大值</li>
 <li>函数的返回值 若在函数中找到了目标值，则返回目标值的索引，否则返回-1。</li>
 <li>初始时l=-1,r=arr.length-1</li>
