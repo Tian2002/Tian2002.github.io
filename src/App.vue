@@ -1,13 +1,16 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { dateKey, resolveScene, themeForDate, TIME_ZONE } from './themes.js'
+import { dateKey, resolveScene, themeForTime } from './themes.js'
 
 const route = resolveScene(window.location.pathname)
 const now = ref(new Date())
-const theme = computed(() => route.theme ?? themeForDate(now.value))
+const theme = computed(() => route.theme ?? themeForTime(now.value))
 const date = computed(() => dateKey(now.value).replaceAll('-', '.'))
 const weekday = computed(() => new Intl.DateTimeFormat('zh-CN', {
-  timeZone: TIME_ZONE, weekday: 'long',
+  weekday: 'long',
+}).format(now.value))
+const localTime = computed(() => new Intl.DateTimeFormat('zh-CN', {
+  hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
 }).format(now.value))
 const imageFailed = ref(false)
 const paused = ref(false)
@@ -34,7 +37,7 @@ onUnmounted(() => {
 <template>
   <div class="island" :class="[theme.id, { paused }]" :style="{ '--scene-position': theme.position }">
     <Transition name="scenery">
-      <img v-if="!imageFailed" :key="theme.id" class="landscape" :src="`/themes/${theme.id}.webp`"
+      <img v-if="!imageFailed" :key="theme.id" class="landscape" :src="`/themes/${theme.id}.webp?v=scene-subjects-2`"
         :alt="theme.alt" fetchpriority="high" decoding="async" @error="imageFailed = true" />
     </Transition>
     <div class="veil" aria-hidden="true"></div>
@@ -53,7 +56,7 @@ onUnmounted(() => {
         </svg>
         <div><span class="brand-name">晴屿</span><span class="brand-subtitle">HARU ISLE</span></div>
       </div>
-      <div class="date-stamp"><time :datetime="dateKey(now)">{{ date }}</time><span>{{ weekday }}</span></div>
+      <div class="date-stamp"><div class="calendar"><time :datetime="dateKey(now)">{{ date }}</time><span>{{ weekday }}</span></div><time class="local-clock" :datetime="now.toISOString()">当地时间 {{ localTime }}</time></div>
     </header>
 
     <main class="hero-copy" id="main">
@@ -75,11 +78,11 @@ onUnmounted(() => {
     <footer class="shoreline">
       <div class="scene-label">
         <div class="scene-description">
-          <p class="scene-kicker">{{ route.kind === 'scene' ? '此刻风景' : '今日风景' }}<span class="tiny-dot"></span>{{ theme.english }}</p>
+          <p class="scene-kicker">{{ route.kind === 'scene' ? '此刻风景' : `${theme.period}风景` }}<span class="tiny-dot"></span>{{ theme.english }}</p>
           <p class="scene-name">{{ theme.name }}<span class="scene-divider">/</span><span class="scene-note">{{ theme.mood }}</span></p>
         </div>
       </div>
-      <div class="shore-note"><span class="note-line" aria-hidden="true"></span><p>{{ theme.note }}</p><span class="tomorrow">{{ route.kind === 'daily' ? '明天，又是一份小小的惊喜。' : '让这一刻，停留得久一点。' }}</span></div>
+      <div class="shore-note"><span class="note-line" aria-hidden="true"></span><p>{{ theme.note }}</p><span class="tomorrow">{{ route.kind === 'live' ? '随你的当地时间，风景慢慢流转。' : '让这一刻，停留得久一点。' }}</span></div>
       <button class="motion-toggle" type="button" :aria-pressed="paused" :aria-label="paused ? '播放风景动效' : '暂停风景动效'" @click="paused = !paused">
         <svg v-if="!paused" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4v8M10 4v8" stroke="currentColor" stroke-width="1.5" /></svg>
         <svg v-else viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 4 6 4-6 4V4Z" stroke="currentColor" stroke-linejoin="round" /></svg>

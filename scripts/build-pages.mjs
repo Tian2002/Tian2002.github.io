@@ -6,7 +6,7 @@ const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf
 for (const theme of themes) {
   const directory = new URL(`../dist/scenes/${theme.id}/`, import.meta.url)
   await mkdir(directory, { recursive: true })
-  await writeFile(new URL('index.html', directory), html.replace('<title>晴屿 · 每天一幅风景</title>', `<title>晴屿 · ${theme.name}</title>`))
+  await writeFile(new URL('index.html', directory), html.replace('<title>晴屿 · 风景随时间流转</title>', `<title>晴屿 · ${theme.name}</title>`))
 }
 await writeFile(new URL('../dist/404.html', import.meta.url), html)
 await writeFile(new URL('../dist/.nojekyll', import.meta.url), '')
