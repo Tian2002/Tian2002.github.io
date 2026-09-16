@@ -74,7 +74,6 @@ onUnmounted(() => {
 
     <footer class="shoreline">
       <div class="scene-label">
-        <span class="scene-number">{{ theme.number }}</span>
         <div class="scene-description">
           <p class="scene-kicker">{{ route.kind === 'scene' ? '此刻风景' : '今日风景' }}<span class="tiny-dot"></span>{{ theme.english }}</p>
           <p class="scene-name">{{ theme.name }}<span class="scene-divider">/</span><span class="scene-note">{{ theme.mood }}</span></p>

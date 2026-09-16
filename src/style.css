@@ -36,8 +36,6 @@ h1 i { font-style: normal; position: absolute; font-size: .42em; right: -.72em; 
 .tagline { font-family: var(--serif); font-size: clamp(18px, 1.7vw, 23px); letter-spacing: .13em; line-height: 1.9; text-wrap: balance; }
 .invitation { font-size: 11px; letter-spacing: .2em; margin-top: 17px; opacity: .75; line-height: 1.8; }
 .shoreline { display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 24px; padding: 0 5.1vw max(51px, env(safe-area-inset-bottom)); }
-.scene-label { display: flex; align-items: center; gap: 17px; }
-.scene-number { font: italic 36px var(--serif); opacity: .65; border-right: 1px solid #ffffff45; padding-right: 17px; line-height: 1.2; }
 .scene-kicker { display: flex; align-items: center; gap: 8px; font-size: 8px; letter-spacing: .12em; opacity: .7; line-height: 1.5; }
 .tiny-dot { width: 2px; height: 2px; border-radius: 50%; background: currentColor; }
 .scene-name { font-family: var(--serif); font-size: 15px; letter-spacing: .12em; margin-top: 8px; white-space: nowrap; }
@@ -93,8 +91,6 @@ h1 i { font-style: normal; position: absolute; font-size: .42em; right: -.72em; 
   .shore-note p { font-size: 11px; letter-spacing: .05em; }
   .tomorrow { font-size: 8px; }
   .note-line { height: 21px; margin-bottom: 14px; }
-  .scene-number { font-size: 29px; padding-right: 12px; }
-  .scene-label { gap: 12px; }
   .scene-kicker { font-size: 6px; gap: 5px; letter-spacing: .06em; }
   .scene-name { font-size: 13px; margin-top: 6px; }
   .motion-toggle { width: 44px; height: 44px; }
