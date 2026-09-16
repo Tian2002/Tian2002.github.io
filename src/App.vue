@@ -37,7 +37,7 @@ onUnmounted(() => {
 <template>
   <div class="island" :class="[theme.id, { paused }]" :style="{ '--scene-position': theme.position }">
     <Transition name="scenery">
-      <img v-if="!imageFailed" :key="theme.id" class="landscape" :src="`/themes/${theme.id}.webp?v=scene-subjects-2`"
+      <img v-if="!imageFailed" :key="theme.id" class="landscape" :src="`/themes/${theme.id}.webp?v=art-worlds-3`"
         :alt="theme.alt" fetchpriority="high" decoding="async" @error="imageFailed = true" />
     </Transition>
     <div class="veil" aria-hidden="true"></div>

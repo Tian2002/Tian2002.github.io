@@ -14,12 +14,13 @@ p, h1 { margin: 0; }
   min-height: 620px; min-height: max(620px, 100svh); overflow: hidden;
   background: linear-gradient(155deg, #a97f95, #4a7492 52%, #153b54);
 }
-.island.dawn { background: linear-gradient(155deg, #697a9c, #c69587 52%, #536477); }
-.island.forest { background: linear-gradient(155deg, #244e48, #487f69 52%, #173b3e); }
+.island.dawn { background: linear-gradient(155deg, #254d52, #193b45 52%, #bf744d); }
+.island.sakura { background: linear-gradient(155deg, #826585, #65566f 52%, #53414c); }
+.island.forest { background: linear-gradient(155deg, #554050, #755146 52%, #342f4a); }
 .island.sunset { background: linear-gradient(155deg, #976880, #c38362 52%, #593c4e); }
-.island.twilight { background: linear-gradient(155deg, #353d66, #6b6886 52%, #243b53); }
+.island.twilight { background: linear-gradient(155deg, #213d3c, #25383c 52%, #172225); }
 .island.summer { background: linear-gradient(155deg, #769dbd, #22768f 52%, #163e58); }
-.island.night { background: linear-gradient(155deg, #11172d, #243958 52%, #121e32); }
+.island.night { background: linear-gradient(155deg, #38243f, #272846 52%, #172225); }
 .landscape { position: absolute; z-index: -3; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; animation: drift 36s ease-in-out infinite alternate; }
 .veil { position: absolute; z-index: -2; inset: 0; background: linear-gradient(180deg, #10213255, #112b4322 22%, #10273c30 42%, #10253926 61%, #0d203fc7), radial-gradient(ellipse at 50% 44%, #15294273, transparent 65%); }
 .night .veil, .twilight .veil { background: linear-gradient(180deg, #080e2455, #080e241a 30%, #080e2426 60%, #080e24cd); }
@@ -57,20 +58,20 @@ h1 i { font-style: normal; position: absolute; font-size: .42em; right: -.72em; 
 .motion-toggle:focus-visible { outline: 2px solid #fff; outline-offset: 5px; }
 .atmosphere { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
 .particle { position: absolute; left: var(--x); animation-delay: var(--delay) !important; }
-.sakura .particle { top: -10%; width: 7px; height: 11px; border-radius: 70% 5% 70% 30%; background: #ffe0ecaa; animation: petal calc(16s + var(--i) * 1s) linear infinite; }
+.summer .particle { bottom: -5%; width: calc(3px + var(--i) * .4px); height: calc(3px + var(--i) * .4px); border: 1px solid #c9efff66; border-radius: 50%; animation: bubble calc(16s + var(--i) * 1s) linear infinite; }
 .night .particle { top: calc(8% + var(--i) * 4%); width: 2px; height: 2px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px #d8e4ff; animation: twinkle 5s ease-in-out infinite alternate; }
 .twilight .particle { top: -20%; width: 1px; height: 30px; background: linear-gradient(transparent, #cfdaff66); transform: rotate(12deg); animation: rain calc(1.8s + var(--i) * .06s) linear infinite; }
-.forest .particle { top: calc(10% + var(--i) * 6%); width: 3px; height: 3px; background: #f4edbd; border-radius: 50%; box-shadow: 0 0 12px #f4edbd; animation: forest-light 9s ease-in-out infinite alternate; }
-.summer .particle, .dawn .particle, .sunset .particle { display: none; }
+.forest .particle { top: calc(10% + var(--i) * 6%); width: 3px; height: 3px; background: #f4edbd; animation: pixel-light 7s steps(4) infinite alternate; }
+.sakura .particle, .dawn .particle, .sunset .particle { display: none; }
 .paused *, .paused *::before { animation-play-state: paused !important; }
 .scenery-enter-active, .scenery-leave-active { transition: opacity 1.5s; }
 .scenery-enter-from, .scenery-leave-to { opacity: 0; }
 .missing-title { font-size: clamp(32px, 6vw, 76px); }
 @keyframes drift { from { transform: scale(1); } to { transform: scale(1.045); } }
 @keyframes arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes petal { from { transform: translate(0, -20px) rotate(0); opacity: 0; } 10% { opacity: .65; } 90% { opacity: .65; } to { transform: translate(130px, 110vh) rotate(320deg); opacity: 0; } }
+@keyframes bubble { from { transform: translateY(0); opacity: 0; } 15% { opacity: .5; } 85% { opacity: .5; } to { transform: translateY(-110vh); opacity: 0; } }
 @keyframes rain { from { translate: 0 -30px; opacity: 0; } 15% { opacity: .45; } to { translate: -100px 120vh; opacity: .1; } }
-@keyframes forest-light { from { opacity: 0; transform: translateY(12px); } to { opacity: .5; transform: translateY(-18px); } }
+@keyframes pixel-light { from { opacity: 0; transform: translateY(12px); } to { opacity: .5; transform: translateY(-18px); } }
 @keyframes twinkle { from { opacity: .1; } to { opacity: .8; } }
 @media (min-width: 1700px) { .masthead { padding-top: 64px; } .shoreline { padding-bottom: 64px; } }
 @media (max-width: 1100px) {
