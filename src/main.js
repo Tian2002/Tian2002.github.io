@@ -1,5 +1,10 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import { standalonePageForPath } from './pages.js'
 import './style.css'
 
-createApp(App).mount('#app')
+const page = standalonePageForPath(window.location.pathname)
+const component = page?.kind === 'autumn'
+  ? import('./AutumnPage.vue')
+  : import('./App.vue')
+
+component.then(({ default: App }) => createApp(App).mount('#app'))

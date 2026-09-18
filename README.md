@@ -50,6 +50,12 @@ npm run preview
 
 ## 修改内容
 
+### 独立节日页
+
+`/festivals/autumn/` 是“把月亮寄给你”通用祝福页，支持拆信、收下祝福和保存 PNG 纪念卡。首页不提供入口，直接分享完整地址即可。开发时打开 `http://127.0.0.1:5173/festivals/autumn/`。
+
+页面代码在 `src/AutumnPage.vue`，独立页面登记在 `src/pages.js`，详细设计和插画提示词在 `docs/autumn-design.md`。生产构建会生成真实静态入口，支持直接访问和刷新。
+
 - `src/themes.js`：主题名称、寄语、图片描述、移动端裁切位置、时段切换规则。
 - `public/themes/`：本地插画素材，无外部图片或字体请求。
 - `src/App.vue`：首页与固定主题页，含暂停动效按钮。
